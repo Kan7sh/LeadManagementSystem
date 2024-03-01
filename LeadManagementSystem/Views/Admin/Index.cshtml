@@ -1,0 +1,102 @@
+﻿@model List<Lead>   
+@{
+    List<Lead> newLeads = Model.Where(lead => lead.Status == "New").ToList();
+    List<Lead> contactedLeads = Model.Where(lead => lead.Status == "Contacted").ToList();
+    List<Lead> qualifiedLeads = Model.Where(lead => lead.Status == "Qualified").ToList();
+    List<Lead> followUpLeads = Model.Where(lead => lead.Status == "Follow-Up").ToList();
+    List<Lead> closedWonLeads = Model.Where(lead => lead.Status == "Closed-Won").ToList();
+    List<Lead> closedLostLeads = Model.Where(lead => lead.Status == "Closed-Lost").ToList();
+
+}
+
+<style>
+
+    .container{
+    max-width:1500px;
+    }
+</style>
+
+<div class="base">
+
+
+
+<br >
+
+
+
+
+          <div class="dash_div">
+
+              <div>
+<span style="padding-left:40px;color:#596c81; font-size:28px; font-weight:600">Lead Updates</span><br />
+<div style="padding-left:40px;">
+<span style="color:#596c81; font-size:14px; font-weight:300;text-align:justify;">Insights into lead status, including counts for closed, new, contacted, follow-up, and qualified leads.</span>
+</div>
+<br />
+                  <div class="count_row">
+  <div class="col-sm-3">
+    <div class="card count_card" style="background-color:white;">
+      <div class="card-body d-flex  flex-column align-items-center">
+        <h5 class="card-title" style="font-size:15px;">New</h5>
+        <p class="card-title">@newLeads.Count()</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-3">
+    <div class="card count_card" style="background-color:white;" >
+      <div class="card-body d-flex  flex-column align-items-center">
+        <h5 class="card-title" style="font-size:15px;">Contacted</h5>
+        <p class="card-title">@contactedLeads.Count()</p>
+      </div>
+    </div>
+  </div>
+   <div class="col-sm-3">
+    <div class="card count_card" style="background-color:white;">
+      <div class="card-body d-flex  flex-column align-items-center">
+        <h5 class="card-title" style="font-size:15px;">Qualified</h5>
+        <p class="card-title">@qualifiedLeads.Count()</p>
+      </div>
+    </div>
+  </div>
+  </div>
+  <br />
+  <div class="count_row">
+   <div class="col-sm-3">
+    <div class="card count_card" style="background-color:white;">
+      <div class="card-body d-flex  flex-column align-items-center">
+        <h5 class="card-title" style="font-size:15px;">Follow-Up</h5>
+        <p class="card-title">@followUpLeads.Count()</p>
+      </div>
+    </div>
+  </div>
+   <div class="col-sm-3">
+    <div class="card count_card" style="background-color:white;" >
+      <div class="card-body d-flex  flex-column align-items-center">
+        <h5 class="card-title" style="color:green; font-size:14px;">Closed-Won</h5>
+        <p class="card-title" style="color:green">@closedWonLeads.Count()</p>
+      </div>
+    </div>
+  </div>
+   <div class="col-sm-3">
+    <div class="card count_card" style="background-color:white;" >
+      <div class="card-body d-flex  flex-column align-items-center">
+        <h5 class="card-title" style="color:red; font-size:15px">Closed-Lost</h5>
+        <p class="card-title" style="color:red">@closedLostLeads.Count()</p>
+      </div>
+    </div>
+  </div>
+</div>
+          <br >     
+
+<div class="d-flex justify-content-center">
+<a asp-action="AddLead" asp-controller="Admin"><button type="button" class="btn btn-primary add_lead_btn"><i class="bi bi-plus-lg"></i>&nbsp;Add Lead</button></a>
+</div>
+
+              </div>
+              <img src="~/images/dashboard_img.png" width="450px" height="450px"/>
+          </div>
+  
+     <br >
+
+
+</div>

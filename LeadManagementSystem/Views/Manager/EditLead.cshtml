@@ -1,0 +1,114 @@
+﻿@model LeadManagementSystem.Models.Lead
+@using Microsoft.AspNetCore.Identity;
+
+@{
+    var agents = ViewBag.AgentList as List<Agent>;
+}
+ <div style="margin-top:10px;">
+<span style="color:#596c81; font-size:28px; font-weight:600">Edit Lead</span><br />
+<span style="color:#596c81; font-size:14px; font-weight:300;text-align:justify;">Edit the required details of lead</span>
+</div>
+   <br />
+   <form method="post">
+
+               <div class="form_div">
+
+
+                   <div>
+
+ <input  type="hidden" asp-for="Id"/>
+    <div class="form-group">
+        <input asp-for="UserName" class="form-control" id="Name" placeholder="Full name" />
+        <span asp-validation-for="UserName" class="text-danger"></span>
+    </div>
+    <br>
+
+    <div class="form-group">
+        <input asp-for="Email" class="form-control" id="Email" placeholder="Email address" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <br>
+    <div class="form-group">
+        <input asp-for="PhoneNumber" class="form-control" id="PhoneNumber" placeholder="Phone number" />
+        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+    </div>
+    <br>
+    <div class="form-group">
+        <input asp-for="Address" class="form-control" id="Address" placeholder="Address" />
+        <span asp-validation-for="Address" class="text-danger"></span>
+
+    </div>
+
+    <br>
+
+                   </div>
+
+
+                   <div>
+                          <div class="form-group">
+        <input asp-for="City" class="form-control" id="City" placeholder="City" />
+        <span asp-validation-for="City" class="text-danger"></span>
+
+    </div>
+    <br>
+    <div class="form-group">
+
+        <select asp-for="AgentId" name="AgentId" class="form-control" id="AgentId">
+            <option value="">Select a Manager</option>
+                    @foreach (var agent in agents)
+                    {
+                                    <option value="@agent.Id">@agent.Fullname</option>
+                    }
+        </select>
+        <span asp-validation-for="AgentId" class="text-danger"></span>
+
+    </div>
+    <br>
+
+    <div class="form-group">
+
+        <select asp-for="Source" name="Source" class="form-control" id="Source">
+            <option value="">Select Source</option>
+            <option value="Instagram">Instagram</option>
+            <option value="LinkedIn">LinkedIn</option>
+            <option value="Twitter">Twitter</option>
+            <option value="Facebook">Facebook</option>
+
+
+        </select>
+        <span asp-validation-for="Source" class="text-danger"></span>
+        <br />
+        <select asp-for="Status" name="Status" class="form-control" id="Status">
+            <option value="New">New</option>
+            <option value="Contacted">Contacted</option>
+            <option value="Qualified">Qualified</option>
+            <option value="Follow-Up">Follow-Up</option>
+            <option value="Closed-Won">Closed-Won</option>
+            <option value="Closed-Lost">Closed-Lost</option>
+
+
+        </select>
+        <span asp-validation-for="Source" class="text-danger"></span>
+
+    </div>
+    <br>
+
+                   </div>
+
+
+</div>
+
+   
+ 
+
+    <button type="submit" class="btn btn-primary" style="width:100px">Save</button>
+</form>
+
+
+
+<div id="toast-container" class="toast-container"></div> 
+
+@section Scripts {
+                    <partial name="_ValidationScriptsPartial" />
+
+}

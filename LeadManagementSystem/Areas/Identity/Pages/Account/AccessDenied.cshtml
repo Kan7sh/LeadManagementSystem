@@ -1,0 +1,28 @@
+@page
+@model AccessDeniedModel
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@if (User.IsInRole("Admin"))
+{
+    var baseUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}";
+    Response.Redirect($"{baseUrl}/Admin/Index");
+}
+@if (User.IsInRole("Manager"))
+{
+    var baseUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}";
+    Response.Redirect($"{baseUrl}/Manager/Index");
+}
+@if (User.IsInRole("Agent"))
+{
+    var baseUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}";
+    Response.Redirect($"{baseUrl}/Agent/Index");
+}
+@{
+    ViewData["Title"] = "Access denied";
+}
+
+
+<header>
+    <h1 class="text-danger">@ViewData["Title"]</h1>
+    <p class="text-danger">You do not have access to this resource.</p>
+</header>

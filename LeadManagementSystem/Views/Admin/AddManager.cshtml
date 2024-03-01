@@ -1,0 +1,58 @@
+﻿@model LeadManagementSystem.Models.Manager
+@using Microsoft.AspNetCore.Identity;
+
+
+ <div style="margin-top:10px;">
+<span style="color:#596c81; font-size:28px; font-weight:600">Add Manager</span><br />
+<span style="color:#596c81; font-size:14px; font-weight:300;text-align:justify;">Edit the required details of manager</span>
+</div>
+<br />
+<form method="post">
+
+  <div class="form-group">
+    <input   asp-for="Fullname" class="form-control" id="Name"  placeholder="Full name" style="border:0px;box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);"/>
+    <span asp-validation-for="Fullname" class="text-danger" ></span>
+  </div>
+    <br >
+
+  <div class="form-group">
+    <input asp-for="Email" class="form-control" id="Email" placeholder="Email address"/>
+    <span asp-validation-for="Email" class="text-danger" ></span>
+  </div>
+  <br >
+  <div class="form-group">
+    <input asp-for="PhoneNumber" class="form-control" id="PhoneNumber" placeholder="Phone number"/>
+    <span asp-validation-for="PhoneNumber" class="text-danger" ></span>
+  </div>
+    <br >
+
+  <div class="form-group">
+    <input asp-for="PasswordHash" class="form-control" id="Password" placeholder="Password"/>
+    <span asp-validation-for="PasswordHash" class="text-danger" ></span>
+  </div>
+
+    <br >
+
+    <div class="form-group">
+    <input asp-for="Address" class="form-control" id="Address" placeholder="Address"/>
+     <span asp-validation-for="Address" class="text-danger" ></span>
+
+  </div>
+
+  <br >
+    <div class="form-group">
+    <input asp-for="City" class="form-control" id="City" placeholder="City"/>
+    <span asp-validation-for="City" class="text-danger" ></span>
+
+  </div>
+  
+    <br >
+
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
+
+@section Scripts {
+        <partial name="_ValidationScriptsPartial" />
+}

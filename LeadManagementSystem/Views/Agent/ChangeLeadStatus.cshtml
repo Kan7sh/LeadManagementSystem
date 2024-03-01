@@ -1,0 +1,31 @@
+﻿@model LeadManagementSystem.Models.Lead;
+
+
+
+ <div style="margin-top:10px;">
+<span style="color:#596c81; font-size:28px; font-weight:600">Change Lead Status</span><br />
+<span style="color:#596c81; font-size:14px; font-weight:300;text-align:justify;">Update the lead status with remark.</span>
+</div>
+   <br />
+
+ <form method="post">
+            <input type="hidden" asp-for="Id"/>
+         <select asp-for="Status" name="Status" class="form-control" id="Status">
+            <option value="New">New</option>
+            <option value="Contacted">Contacted</option>
+            <option value="Qualified">Qualified</option>
+            <option value="Follow-Up">Follow-Up</option>
+            <option value="Closed-Won">Closed-Won</option>
+            <option value="Closed-Lost">Closed-Lost</option>
+
+
+        </select>
+ <br>
+ <div class="form-group">
+    <textarea class="form-control" id="exampleFormControlTextarea1" name="Remark" rows="3" placeholder="Remarks"></textarea>
+
+  </div>
+  <br />
+      <button type="submit" class="btn btn-primary" style="width:100px">Update</button>
+
+  </form>

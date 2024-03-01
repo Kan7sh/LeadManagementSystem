@@ -1,0 +1,19 @@
+﻿@model List<LeadStatus>
+
+<br>
+
+@for (int i = Model.Count - 1; i >= 0; i--)
+{
+    var leadStatus = Model[i];
+        <ul class="timeline">
+            <li>
+                <div class="card">
+                        <span style="color:#596c81; font-size:28px; font-weight:600">@leadStatus.Status</span><br />
+
+                    <a target="_blank" style="color:#7c50ca;font-weight:400">@leadStatus.AgentName</a>
+                        <span><i class="bi bi-clock"></i> @leadStatus.DateTime</span>
+                    <b>Remark:</b> <p>@leadStatus.Remark</p>
+                </div>
+            </li>
+        </ul>
+}

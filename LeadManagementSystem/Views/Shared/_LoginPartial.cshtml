@@ -1,0 +1,179 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+
+
+    @if (SignInManager.IsSignedIn(User))
+    {
+        if (User.IsInRole("Admin"))
+        {
+                  <nav class="navbar navbar-expand-lg custom_nav">
+          <div class="container-fluid d-flex nav_container justify-content-between" >
+              <img src="~/images/brand_logo.png" width=30px height=30px/>
+            <span class="brand_name">Lead Management</span>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon text-primary  "><i class="bi bi-list text-white"></i></span>
+            </button>
+            <div class="collapse navbar-collapse d-md-flex justify-content-md-end" id="navbarNav">
+              <ul class="navbar-nav d-flex gap-5">
+                <li class="nav-item">     
+                   <a class="nav-link active  text-white" aria-current="page"  asp-action="Index" asp-controller="Admin"><i class="bi bi-menu-button-wide"></i>&nbsp;    Dashboard</a>
+                 </li>
+                <li class="nav-item">
+                     <a class="nav-link active  text-white" aria-current="page"  asp-action="Managers" asp-controller="Admin"><i class="bi bi-person"></i>&nbsp;Managers</a>
+                </li>
+                <li class="nav-item">
+                   <a class="nav-link active  text-white" aria-current="page"  asp-action="Agents" asp-controller="Admin"><i class="bi bi-people"></i>&nbsp;Agents</a>
+                </li>
+                  <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Leads
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" asp-action="Leads" asp-controller="Admin" asp-route-leadStatus="New">New</a></li>
+                            <li><a class="dropdown-item" asp-action="Leads" asp-controller="Admin" asp-route-leadStatus="Contacted">Contacted</a></li>
+                            <li><a class="dropdown-item" asp-action="Leads" asp-controller="Admin" asp-route-leadStatus="Qualified">Qualified</a></li>
+                            <li><a class="dropdown-item" asp-action="Leads" asp-controller="Admin" asp-route-leadStatus="Follow-Up">Follow-Up</a></li>
+                            <li><a class="dropdown-item" asp-action="Leads" asp-controller="Admin" asp-route-leadStatus="Closed-Lost">Closed-Lost</a></li>
+                            <li><a class="dropdown-item" asp-action="Leads" asp-controller="Admin" asp-route-leadStatus="Closed-Won">Closed-Won</a></li>
+                </ul>
+                </li>
+                <li class="nav-item">
+                    <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                                            <button  type="submit" class="nav-link btn btn-link text-light" ><i class="bi bi-box-arrow-left"></i>&nbsp;&nbsp;Logout</button>
+                    </form>   
+                
+            </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+    }
+    else if (User.IsInRole("Manager"))
+    {
+                    <nav class="navbar navbar-expand-lg custom_nav">
+                  <div class="container-fluid d-flex nav_container justify-content-between" >
+                      <img src="~/images/brand_logo.png" width=30px height=30px/>
+                    <span class="brand_name">Lead Management</span>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                              <span class="navbar-toggler-icon text-primary  "><i class="bi bi-list text-white"></i></span>
+                    </button>
+                    <div class="collapse navbar-collapse d-md-flex justify-content-md-end" id="navbarNav">
+                      <ul class="navbar-nav d-flex gap-5">
+                        <li class="nav-item">     
+                           <a class="nav-link active  text-white" aria-current="page"  asp-action="Index" asp-controller="Manager"><i class="bi bi-menu-button-wide"></i>&nbsp;    Dashboard</a>
+                         </li>
+
+                        <li class="nav-item">
+                                           <a class="nav-link active  text-white" aria-current="page"  asp-action="Agents" asp-controller="Manager"><i class="bi bi-people"></i>&nbsp;Agents</a>
+                        </li>
+                         
+                        <li class="nav-item">
+                            <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                                                    <button  type="submit" class="nav-link btn btn-link text-light" ><i class="bi bi-box-arrow-left"></i>&nbsp;&nbsp;Logout</button>
+                            </form>   
+
+                    </li>
+                      </ul>
+                    </div>
+                  </div>
+                </nav>
+
+                  @*             <nav class="navbar navbar-expand-lg bg-white custom_nav " >
+                  <div class="container-fluid">
+                    <a class="navbar-brand" href="#">Lead Management System</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                      <ul class="navbar-nav">
+                        <li class="nav-item">
+                                  <a class="nav-link active" aria-current="page"  asp-action="Index" asp-controller="Admin">Dashboard</a>
+                         </li>
+                        <li class="nav-item">
+                           <a class="nav-link active" aria-current="page"  asp-action="Agents" asp-controller="Manager">Agents</a>
+                        </li>
+                         
+                        <li class="nav-item">
+                            <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                            <button  type="submit" class="nav-link btn btn-link text-light" >Logout</button>
+                            </form>   
+                    </li>
+                      </ul>
+                    </div>
+                  </div>
+                </nav>    *@
+    }
+    else if (User.IsInRole("Agent"))
+    {
+
+
+                     <nav class="navbar navbar-expand-lg custom_nav">
+                          <div class="container-fluid d-flex nav_container justify-content-between" >
+                              <img src="~/images/brand_logo.png" width=30px height=30px/>
+                            <span class="brand_name">Lead Management</span>
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                                      <span class="navbar-toggler-icon text-primary  "><i class="bi bi-list text-white"></i></span>
+                            </button>
+                            <div class="collapse navbar-collapse d-md-flex justify-content-md-end" id="navbarNav">
+                              <ul class="navbar-nav d-flex gap-5">
+                                <li class="nav-item">     
+                                   <a class="nav-link active  text-white" aria-current="page"  asp-action="Index" asp-controller="Agent"><i class="bi bi-menu-button-wide"></i>&nbsp;    Dashboard</a>
+                                 </li>
+
+                        
+
+                                <li class="nav-item">
+                                    <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                                                            <button  type="submit" class="nav-link btn btn-link text-light" ><i class="bi bi-box-arrow-left"></i>&nbsp;&nbsp;Logout</button>
+                                    </form>   
+
+                            </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </nav>
+
+
+  @*                     <nav class="navbar navbar-expand-lg bg-dark">
+                          <div class="container-fluid">
+                            <a class="navbar-brand" href="#">Lead Management System</a>
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                              <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse" id="navbarNav">
+                              <ul class="navbar-nav">
+                                <li class="nav-item">
+                                          <a class="nav-link active" aria-current="page"  asp-action="Index" asp-controller="Admin">Dashboard</a>
+                                 </li>
+                       
+
+                                <li class="nav-item">
+                                    <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                                    <button  type="submit" class="nav-link btn btn-link text-light" >Logout</button>
+                                    </form>   
+                            </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </nav>  *@  
+    }
+
+    
+    }
+
+    
+
+@* @if (SignInManager.IsSignedIn(User))
+{
+    <li class="nav-item">
+        <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
+    </li>
+    <li class="nav-item">
+        <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+            <button  type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+        </form>
+    </li>
+} *@
+

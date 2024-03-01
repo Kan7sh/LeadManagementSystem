@@ -1,0 +1,124 @@
+﻿    @using Microsoft.AspNetCore.Identity
+    @model List<Manager>
+
+        <div class="d-flex justify-content-between align-items-center">
+        <div style="margin-top:10px;">
+<span style="color:#596c81; font-size:28px; font-weight:600">Managers</span><br />
+<span style="color:#596c81; font-size:14px; font-weight:300;text-align:justify;">List of active managers</span>
+</div>
+    <a asp-action="AddManager" asp-controller="Admin"><button type="button" class="btn btn-primary" style="font-size:12px"><i class="bi bi-plus-lg"></i>&nbsp;&nbsp;Add manager</button></a>
+</div>
+<br />
+
+<span style="color:#596c81; font-size:14px; font-weight:600;text-align:justify;">Count: @Model.Count()</span>
+<br />
+
+
+
+    @foreach (var manager in Model)
+    {
+
+        <br />
+
+                    <div class="card" style="background-color:white;padding:0px; border:0px; box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1); margin-left:50px; margin-right:50px">
+              <h5 class="card-header" style="background-color:white;font-size:15px;border-radius:14px 14px 0px 0px;font-weight:300">@manager.Email</h5>
+          <div class="card-body d-flex justify-content-between">
+          <div>
+
+                                                      <h5 class="card-title" style="color:#596c81;font-weight:600"><i class="bi bi-person-fill" style="color:#D3bcf0;font-weight:600"></i>&nbsp;@manager.Fullname</h5>
+                            <p class="card-text">@manager.PhoneNumber</p>
+                                                <p class="card-text"><i class="bi bi-house-door-fill"></i>&nbsp;@manager.Address ,@manager.City</p>
+          </div>
+          <div class="d-flex flex-column">
+
+                                <a asp-action="EditManager" asp-controller="Admin" asp-route-managerId="@manager.Id" class="btn btn-primary" style="width:80px; height:38px;background-color:#7688f6"><i class="bi bi-pencil-square"></i></a>
+                                    <a class="deleteManagerBtn btn btn-primary" data-id="@manager.Id" style="width:80px; height:38px; margin-top:10px;background-color:white;border:1px solid #F28181"><i class="bi bi-trash-fill" style="color:#F28181"></i></a>
+                    </div>
+                    </div>
+    </div>
+
+    }
+
+
+
+@section Scripts {
+
+        <script>
+                        var managerId ;
+
+            $(document).ready(function () {
+                    $(".deleteManagerBtn").click(function () {
+                             managerId = $(this).data("id");
+                            console.log($(this).data("id"));
+
+
+                    $.ajax({
+                        url: '@Url.Action("CheckDeleteForManager", "Admin")',
+                        type: 'GET',
+                                    data: { managerId: managerId },
+                        success: function (data) {
+                            if (data >= 1) {
+                             $('#messageModal').modal('show');
+
+
+                            } else {
+                                  $('#confirmDelete').modal('show');
+
+                                }
+                        },
+                        error: function (error) {
+                            console.error('Error:', error);
+                        }
+                    });
+                });
+            });
+
+                $("#confirmedDelete").click(function(){
+                                              var deleteUrl = '@Url.Action("DeleteManager", "Admin")' + '?managerId=' + managerId;
+                        window.location.href = deleteUrl; 
+
+                });
+
+        </script>
+}
+
+
+
+<div class="modal fade" id="messageModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Delete Fail</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        There are assigned agents to this manager. Please unassign the agents to delete the manager.
+      </div>
+      <div class="modal-footer">
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="confirmDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Confirm Delete</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        On delete all the data of manager will be deleted.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" style="background-color:#Abaaac">Cancel</button>
+        <a  ><button type="button" class="btn btn-primary" id="confirmedDelete" >Delete</button></a>
+      </div>
+    </div>
+  </div>
+</div>
+       
+   

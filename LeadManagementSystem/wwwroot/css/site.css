@@ -1,0 +1,228 @@
+@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    
+    background-color: #f4f4f9;
+    font-family :'Poppins',sans-serif;
+}
+
+.count_row{
+    display:flex;
+    justify-content:space-evenly;
+}
+
+.count_card {
+    width: 185px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    border: 0px;
+    background-color: white;
+}
+
+.form_div{
+    display:flex;
+    justify-content:space-between;
+}
+
+.form-control {
+    width:600px;
+    border: 0px;
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.1);
+}
+
+ul.timeline {
+    list-style-type: none;
+    position: relative;
+}
+
+    ul.timeline:before {
+        content: ' ';
+        background: #bcbcbc;
+        display: inline-block;
+        position: absolute;
+        left: 29px;
+        width: 2px;
+        height: 100%;
+        z-index: 400;
+    }
+
+    ul.timeline > li {
+        margin: 20px 0;
+        padding-left: 20px;
+    }
+
+        ul.timeline > li:before {
+            content: ' ';
+            background: white;
+            display: inline-block;
+            position: absolute;
+            border-radius: 50%;
+            border: 3px solid #7c50ca;
+            left: 20px;
+            width: 20px;
+            height: 20px;
+            z-index: 400;
+        }
+
+
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+    height: 50px;
+    background-color: #7c50ca;
+    border-color: white;
+    border-radius: 18px;
+}
+
+.card{
+    padding:30px;
+    background-color:#f7f7f7;
+    border-radius: 12px
+}
+
+.form-control{
+    height:55px;
+    border-radius:10px
+}
+
+.login-title {
+    font-family: "Kalam", cursive;
+    font-weight: 700;
+    color: #455a64;
+    text-align: center;
+    font-size: 32px;
+    font-style: normal;
+}
+
+.nav-pills li a:hover{
+    background-color:#7c50ca
+}
+
+
+.custom_nav {
+    background-color: #7c50ca;
+}
+
+.brand_name {
+    font-weight: 500;
+    padding-left: 10px;
+    color: white;
+  
+}
+
+.nav-item{
+    color:white;
+ 
+}
+
+.base{
+    padding-top:8vh;
+}
+
+.dash_div{
+    display:flex;
+    justify-content:space-evenly;
+}
+
+
+
+
+@media screen and (max-width: 600px) {
+   .dash_div{
+       flex-direction:column-reverse;
+   }
+
+    .count_row {
+        flex-direction: column;
+        align-items:center;
+    }
+
+    .count_card {
+      margin-top:10px;
+    }
+
+    .form-control{
+        width:300px;
+    }
+
+    .form_div {
+        flex-direction: column;
+        align-items:center;
+    }
+}
+
+
+
+/*.base {
+    position: relative;*/ /* Ensure relative positioning for z-index */
+    /*height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main {
+    height: 100%;
+    width: 100%;
+}
+
+.container {
+    height: 92vh;
+    width: 100vw;
+    position: relative;*/ /* Ensure relative positioning for z-index */
+    /*z-index: 2;*/ /* Adjust the z-index as needed */
+/*}*/
+
+.dot_img1 {
+    position: absolute;  
+    
+    height: 18vh;
+    left:70vw;
+    width: 15vw;
+    z-index: -1 ;  
+}
+
+.dot_img2 {
+    position: absolute;
+    height: 18vh;
+    top: 55vh;
+    width: 15vw;
+    z-index: -1;
+}
+
+.add_lead_btn{
+    height:82px;
+    width:160px;
+}
+
+    .add_lead_btn:hover {
+        height: 85px;
+        width: 165px;
+    }
+
+/*.lead_count_container{
+    z-index:4;
+}*/
+
+/*.base {
+    background-color: #f4f4f9;
+}*/
